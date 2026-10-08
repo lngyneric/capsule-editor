@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>capsule viewer</title>
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --bar-bg: #111827; --bar-fg: #e5e7eb; --bar-muted: #9ca3af;
+    --bar-btn-bg: #1f2937; --bar-border: #374151; --bar-danger: #f87171;
+  }
+  html, body { margin: 0; height: 100%; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+  #bar { height: 44px; background: var(--bar-bg); color: var(--bar-fg); display: flex; align-items: center;
+         gap: 10px; padding: 0 14px; font-size: 13px;
+         overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+  #bar > * { flex-shrink: 0; }
+  #bar .name { font-weight: 700; white-space: nowrap; }
+  #bar select, #bar button { font-size: 13px; padding: 4px 8px; border-radius: 6px;
+         border: 1px solid var(--bar-border); background: var(--bar-btn-bg); color: var(--bar-fg); cursor: pointer; }
+  #bar .status { color: var(--bar-muted); margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #bar .err { color: var(--bar-danger); }
+  #frame { width: 100%; height: calc(100% - 44px); border: 0; background: #fff; display: block;
+           transition: opacity .32s ease, transform .32s ease; }
+  #pick { display: none; }
+</style>
+</head>
+<body>
+<div id="bar">
+  <span class="name">📦 <span id="appname">capsule</span></span>
+  <select id="vers" title="切换版本"></select>
+  <button id="first" title="第一页 (Home)">⏮</button>
+  <button id="prev" title="上一页 (←/↑)">◀ 上一页</button>
+  <button id="next" title="下一页 (→/↓/空格)">下一页 ▶</button>
+  <button id="last" title="最后一页 (End)">⏭</button>
+  <button id="reload">↻ 重新加载</button>
+  <button id="choose">选择 capsule 文件（可多选）</button>
+  <select id="theme" title="主题"></select>
+  <button id="expCap" title="导出合订本 capsule：全部页面内嵌进单个版本，自带翻页条+键盘，任何 capsule 应用打开都能翻页">⤓ 导出capsule</button>
+  <button id="expHtml" title="把当前所有页面合并导出为单个 HTML 文件">⤓ 导出HTML</button>
+  <input type="file" id="pick" accept=".capsule" multiple>
+  <span class="status" id="status">正在加载…</span>
+</div>
+<iframe id="frame" title="capsule content"></iframe>
+<script>
+/* ====== 配置：capsule 文件名（与本页面同目录）====== */
+var CAPSULE_URL = "FY26_AI.capsule";
+</script>
+<script>
+__SQLJS__
+</script>
+<script>
+__APP_JS__
+</script>
+</body>
+</html>
